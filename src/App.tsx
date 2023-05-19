@@ -6,6 +6,7 @@ import './App.css'
 import { useSampleStore } from './stores'
 import axios from 'axios'
 import { BeakerIcon } from '@heroicons/react/24/solid'
+import { motion } from "framer-motion"
 
 // Types
 interface Post {
@@ -104,6 +105,11 @@ function App() {
           Icons
         </h3>
         <BeakerIcon className="h-6 w-6 text-blue-500" />
+
+        <h3 className="text-3xl font-bold underline text-red-500 my-3">
+          Animation
+        </h3>
+        <motion.div animate={{ x: 0 }} />
       </div>
     </>
   )
