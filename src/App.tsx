@@ -1,10 +1,16 @@
+// Imports
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { useSampleStore } from './stores'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const amount = useSampleStore(state => state.amount)
+  const title = useSampleStore(state => state.title)
+  const updateAmount = useSampleStore(state => state.updateAmount)
 
   return (
     <>
@@ -28,9 +34,22 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <h1 className="text-3xl font-bold underline text-red-500">
-        Hello world!
-      </h1>
+      <hr className='my-10' />
+      <div>
+        <h3 className="text-3xl font-bold underline text-red-500 mb-3">
+          Store
+        </h3>
+        <div>
+          <p>Amount: {amount} </p>
+          <p>Title: {title} </p>
+          <button
+            onClick={ () => updateAmount(10) }
+            className='mt-3'
+          >
+            Update Amount
+          </button>
+        </div>
+      </div>
     </>
   )
 }
