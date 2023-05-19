@@ -5,6 +5,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { useSampleStore } from './stores'
 import axios from 'axios'
+import { BeakerIcon } from '@heroicons/react/24/solid'
 
 // Types
 interface Post {
@@ -71,7 +72,7 @@ function App() {
       </p>
       <hr className='my-10' />
       <div>
-        <h3 className="text-3xl font-bold underline text-red-500 mb-3">
+        <h3 className="text-3xl font-bold underline text-red-500 my-3">
           Store
         </h3>
         <div>
@@ -85,7 +86,7 @@ function App() {
           </button>
         </div>
 
-        <h3 className="text-3xl font-bold underline text-red-500 mb-3">
+        <h3 className="text-3xl font-bold underline text-red-500 my-3">
           Service
         </h3>
         <div>
@@ -98,6 +99,11 @@ function App() {
             Create Post
           </button>
         </div>
+
+        <h3 className="text-3xl font-bold underline text-red-500 my-3">
+          Icons
+        </h3>
+        <BeakerIcon className="h-6 w-6 text-blue-500" />
       </div>
     </>
   )
