@@ -1,16 +1,51 @@
 // Imports
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { useSampleStore } from './stores'
+import axios from 'axios'
+
+// Types
+interface Post {
+  title?: string
+  body?: string
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
-  const amount = useSampleStore(state => state.amount)
-  const title = useSampleStore(state => state.title)
-  const updateAmount = useSampleStore(state => state.updateAmount)
+  // Store
+  const amount = useSampleStore(state => state.amount);
+  const title = useSampleStore(state => state.title);
+  const updateAmount = useSampleStore(state => state.updateAmount);
+
+  // Service
+  const baseURL = "https://jsonplaceholder.typicode.com/posts";
+
+  const [post, setPost] = useState<Post>({
+    title: '',
+    body: ''
+  });
+
+  useEffect(() => {
+    axios
+      .get(`${baseURL}/1`)
+      .then((res) => {
+        setPost(res.data);
+      })
+  }, []);
+
+  function createPost() {
+    axios
+      .post(baseURL, {
+        title: 'Hello',
+        body: 'World',
+      })
+      .then((res) => {
+        setPost(res.data)
+      })
+  }
 
   return (
     <>
@@ -47,6 +82,20 @@ function App() {
             className='mt-3'
           >
             Update Amount
+          </button>
+        </div>
+
+        <h3 className="text-3xl font-bold underline text-red-500 mb-3">
+          Service
+        </h3>
+        <div>
+          <p>Title: {post.title}</p>
+          <p>Body: {post.body}</p>
+          <button
+            onClick={ createPost }
+            className='mt-3'
+          >
+            Create Post
           </button>
         </div>
       </div>
