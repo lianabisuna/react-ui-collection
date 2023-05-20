@@ -17,6 +17,10 @@ const routes: RouteObject[] = [
       },
     ],
   },
+  {
+    path: '*',
+    element: lazyLoadRoute(() => import('@/pages/utility/ErrorPage.tsx')),
+  },
 ];
 
 
