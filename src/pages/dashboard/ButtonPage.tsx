@@ -1,5 +1,5 @@
 export default function ButtonPage() {
-    return (
-        <div>Button</div>
-    )
+	return (
+		<div>Button</div>
+	);
 }
