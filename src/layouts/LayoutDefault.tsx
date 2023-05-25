@@ -1,10 +1,9 @@
 import { Outlet } from "react-router-dom";
 
 export default function LayoutDefault() {
-	console.log('Default');
 	return (
-		<div className="bg-blue-500">
-			<div>Default</div>
+		<div className="bg-blue-200">
+			<h1>Default Layout</h1>
 			<Outlet />
 		</div>
 	);
