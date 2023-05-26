@@ -101,7 +101,7 @@ export default function AppButton<To, Href>(props: Prop<To, Href>) {
 export type ButtonSize = 'xs'|'sm'|'lg'|'xl'
 export type ButtonVariant = 'outlined'|'text'
 
-type ConditionalExtendProp<To, Href> = ButtonHTMLAttributes<unknown>
+type ConditionalExtendProp = ButtonHTMLAttributes<unknown>
 
 // type ConditionalExtendProp<To, Href> =
 //   To extends string
@@ -120,4 +120,4 @@ type Prop<To, Href> = {
   variant?: ButtonVariant
   tone?: ColorTone
   loading?: boolean
-} & ConditionalExtendProp<To, Href>
+} & ConditionalExtendProp
