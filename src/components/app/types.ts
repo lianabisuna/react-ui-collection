@@ -1,4 +1,4 @@
-export type TailwindColor = `${string}-${number}`|'black'|'white'
+export type TailwindColor = `${string}-${number}`|'black'|'white'|'eerie'|'night'|'battle'
 
 export type ThemeColor = 'primary'|'secondary'|'success'|'warning'|'danger'|'info'
 

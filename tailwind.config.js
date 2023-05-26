@@ -10,6 +10,10 @@ module.exports = {
       variants: ['hover', 'focus', 'disabled', 'active', 'peer-checked', 'group-focus-within'],
     },
     {
+      pattern: /(bg)-(eerie|night|battle)/,
+      variants: [],
+    },
+    {
       pattern: /(rounded)-(sm|md|lg|xl)/,
       variants: [],
     },
@@ -31,6 +35,9 @@ module.exports = {
     extend: {
       colors: {
         primary: colors.blue,
+        night: '#111111',
+        eerie: '#252525',
+        battle: '#999999',
       },
       keyframes: {
         shake: {
