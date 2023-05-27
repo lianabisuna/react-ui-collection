@@ -103,17 +103,15 @@ function Sidebar() {
 	return (
 		<aside
 			className={`
-				xs:w-80 xs:border-0 absolute z-40 inset-y-0 right-0 w-full shrink-0 md:static md:border-t md:border-[#252525] bg-[#111111] py-3
+				xs:w-80 xs:border-0 absolute z-40 inset-y-0 right-0 w-full shrink-0 md:static md:border-t md:border-[#252525] bg-[#111111] p-3 flex flex-col gap-3
 				${sidebar ? '' : 'max-w-0'}
 			`}
 		>
-			<div>
-				<p className="px-6 text-sm font-medium text-white mb-3">Size</p>
-				<ul className="mx-3 flex flex-col">
-					<li className="px-3 py-2 rounded text-sm font-medium bg-[#252525] text-white">Small</li>
-					<li className="px-3 py-2 rounded text-sm font-medium text-[#999999]">Medium</li>
-					<li className="px-3 py-2 rounded text-sm font-medium text-[#999999]">Large</li>
-				</ul>
+			<div className="grid grid-cols-3">
+				<div className="col-span-1 text-sm font-medium text-battle flex items-center">Size</div>
+				<div className="col-span-2">
+					<input type="text" className="outline-none bg-eerie w-full px-3 py-2 rounded text-white" value={'0'} />
+				</div>
 			</div>
 		</aside>
 	);
