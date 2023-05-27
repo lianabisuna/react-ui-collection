@@ -48,10 +48,16 @@ module.exports = {
           'from': { transform: 'rotate(0deg)' },
           'to': { transform: 'rotate(360deg)' },
         },
+        glow: {
+          '0%': { 'background-size': '400% 400%', 'background-position': '0% 50%' },
+          '50%': { 'background-size': '400% 400%', 'background-position': '100% 50%' },
+          '100%': { 'background-size': '400% 400%', 'background-position': '0% 50%' },
+        },
       },
       animation: {
         shake: 'shake .25s ease',
         rotate: 'rotate .8s linear infinite',
+        glow: 'glow 15s ease infinite',
       },
       aspectRatio: {
         '4/3': '4/3',

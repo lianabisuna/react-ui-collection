@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from "react";
-import { ColorTone, TailwindColor } from "./types";
+import { ColorTone, RoundedSize, TailwindColor } from "./types";
 import { ArrowPathIcon } from "@heroicons/react/20/solid";
 
 export default function AppButton<To, Href>(props: Prop<To, Href>) {
@@ -58,11 +58,17 @@ export default function AppButton<To, Href>(props: Prop<To, Href>) {
     }
   }
 
+  const roundedClass = () => {
+    if (props.rounded) return `rounded-${props.rounded}`
+    else return 'rounded'
+  }
+
   const classList = [
     sizeClass(),
     bgClass(),
     textClass(),
-    borderClass()
+    borderClass(),
+    roundedClass()
   ].join(' ');
 
 
@@ -124,4 +130,5 @@ type Prop<To, Href> = {
   variant?: ButtonVariant
   tone?: ColorTone
   loading?: boolean
+  rounded?: RoundedSize
 } & ConditionalExtendProp

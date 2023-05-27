@@ -1,1 +1,1 @@
-export { useSampleStore } from './sampleStore'
+export { useNavStore } from './navStore'
