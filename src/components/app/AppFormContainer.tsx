@@ -103,7 +103,8 @@ export default function AppFormContainer(props: Prop) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	
 	// Function
-	const onClickContainer = () => {
+	const handleClick: typeof props.onClick = (event) => {
+		props.onClick && props.onClick(event);
 		if (!containerRef.current) return;
 		containerRef.current.querySelector('input')?.focus();
 	}
@@ -139,7 +140,7 @@ export default function AppFormContainer(props: Prop) {
 				group flex flex-col
 				${props.block ? 'w-full' : ''}
 			`}
-			onClick={onClickContainer}
+			onClick={handleClick}
 		>
 			{/* Label */}
 			{(props.label && !props.float) && (
@@ -182,7 +183,7 @@ export default function AppFormContainer(props: Prop) {
 export type ContainerSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
 
 interface Prop extends HtmlHTMLAttributes<unknown> {
-  required: boolean
+	required?: boolean
 	color?: TailwindColor
 	error?: boolean
 	success?: boolean

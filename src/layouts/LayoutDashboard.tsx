@@ -110,7 +110,7 @@ function Sidebar() {
 			<div className="grid grid-cols-3">
 				<div className="col-span-1 text-sm font-medium text-battle flex items-center">Size</div>
 				<div className="col-span-2">
-					<input type="text" className="outline-none bg-eerie w-full px-3 py-2 rounded text-white" value={'0'} />
+					<input type="text" className="outline-none bg-eerie w-full px-3 py-2 rounded text-white" defaultValue={'0'} />
 				</div>
 			</div>
 		</aside>

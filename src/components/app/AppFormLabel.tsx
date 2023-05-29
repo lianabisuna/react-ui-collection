@@ -66,7 +66,7 @@ export default function AppFormLabel(props: Prop) {
 export type ContainerSize = boolean|'xs'|'sm'|'md'|'lg'|'xl'
 
 interface Prop extends HtmlHTMLAttributes<unknown> {
-  required: boolean
+  required?: boolean
 	color?: TailwindColor
 	error?: boolean
 	success?: boolean
