@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react";
 import { ColorTone, RoundedSize, TailwindColor } from "./types";
 import { ArrowPathIcon } from "@heroicons/react/20/solid";
 
-export default function AppButton<To, Href>(props: Prop<To, Href>) {
+export default function AppButton(props: Prop) {
   /** CLASSES */
 
   const sizeClass = () => {
@@ -120,9 +120,7 @@ type ConditionalExtendProp = ButtonHTMLAttributes<unknown>
 //       ? LinkHTMLAttributes<unknown>
 //       : ButtonHTMLAttributes<unknown>
 
-type Prop<To, Href> = {
-  href?: To
-  to?: Href
+export type Prop = {
   disabled?: boolean
   size?: ButtonSize
   color?: TailwindColor

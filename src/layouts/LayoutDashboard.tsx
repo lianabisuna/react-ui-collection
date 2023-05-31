@@ -1,6 +1,7 @@
 // Imports
 import { AppButton } from "@/components/app";
-import { useNavStore } from "@/stores";
+import { useNavStore, useToolbarStore } from "@/stores";
+import { ToolbarItemType } from "@/stores/toolbarStore";
 import * as HeroIcons from '@heroicons/react/24/outline'
 import {
 	Bars3Icon,
@@ -12,7 +13,7 @@ import {
 	DeviceTabletIcon,
 	ComputerDesktopIcon
 } from "@heroicons/react/24/outline";
-import { type SetStateAction, createContext, useContext, useState, type Dispatch, FC } from "react";
+import { type SetStateAction, createContext, useContext, useState, type Dispatch } from "react";
 import { Outlet } from "react-router-dom";
 
 // Provider
@@ -100,6 +101,71 @@ function Sidebar() {
 	const sidebarContext = useContext(SidebarContext);
 	const sidebar = sidebarContext ? sidebarContext.sidebar : false;
 
+
+	/** HANDLE TOOLBAR ITEMS */
+
+	const items = useToolbarStore((state) => state.items);
+	const setValue = useToolbarStore((state) => state.setValue);
+
+
+	/** HANDLE INPUT CHANGE */
+
+	// const [input, setInput] = useState('');
+
+
+	/** HANDLE SELECT CHANGE */
+
+	// Data
+	// const [select, setSelect] = useState<string|string[]>('');
+	// const options = [
+	// 	{ text: 'Solid', value: 'solid' },
+	// 	{ text: 'Outlined', value: 'outlined' },
+	// 	{ text: 'Text', value: 'text' },
+	// ];
+
+	// Function
+	// function handleChange(event: React.FormEvent<HTMLSelectElement>) {
+	// 	setSelect(event.currentTarget.value);
+	// }
+
+	const ToolbarItem = (type: ToolbarItemType, prop: string, value: any, options: any) => {
+		switch (type) {
+			case 'input':
+				return (
+					<input
+						type="text"
+						className="outline-none bg-eerie w-full px-3 py-2 rounded text-white"
+						value={value}
+						onChange={(e)=>setValue(prop, e.target.value)}
+					/>
+				);
+			case 'select':
+				return (
+					<select
+						value={value}
+						onChange={(e)=>setValue(prop, e.currentTarget.value)}
+						className="outline-none bg-eerie w-full px-2 py-2 rounded text-white"
+					>
+						{options?.map((option: any, key: any) => <option key={key} value={option}>{option}</option>)}
+					</select>
+				);
+			case 'checkbox':
+				return (
+					<label className="relative inline-flex items-center mr-5 cursor-pointer w-full">
+						<input
+							type="checkbox"
+							className="sr-only peer"
+							checked={value}
+							onChange={(e) => setValue(prop, e.target.checked)}
+						/>
+						<div className="w-full h-9 bg-eerie rounded peer peer-checked:after:translate-x-full after:w-[calc(50%-2px)] peer-checked:after:content-['Yes'] after:content-['No'] after:absolute after:top-0.5 after:left-[2px] peer-checked:after:right-[2px] after:bg-neutral-500 after:text-white after:rounded after:h-8 after:transition-all after:flex after:justify-center after:items-center"></div>
+					</label>
+				);
+			default:
+				break;
+		}
+	}
+
 	return (
 		<aside
 			className={`
@@ -107,12 +173,39 @@ function Sidebar() {
 				${sidebar ? '' : 'max-w-0'}
 			`}
 		>
-			<div className="grid grid-cols-3">
-				<div className="col-span-1 text-sm font-medium text-battle flex items-center">Size</div>
+			{items?.map((item, key) => {
+				return (
+					<div key={key} className="grid grid-cols-3">
+						<div className="col-span-1 text-sm font-medium text-battle flex items-center">{item.title}</div>
+						<div className="col-span-2">
+							{ToolbarItem(item.type, item.prop, item.value, item.options)}
+						</div>
+					</div>
+				)
+			})}
+			{/* <div className="grid grid-cols-3">
+				<div className="col-span-1 text-sm font-medium text-battle flex items-center">Value</div>
 				<div className="col-span-2">
-					<input type="text" className="outline-none bg-eerie w-full px-3 py-2 rounded text-white" defaultValue={'0'} />
+					<input
+						type="text"
+						className="outline-none bg-eerie w-full px-3 py-2 rounded text-white"
+						value={input}
+						onChange={(e)=>setInput(e.target.value)}
+					/>
 				</div>
 			</div>
+			<div className="grid grid-cols-3">
+				<div className="col-span-1 text-sm font-medium text-battle flex items-center">Variant</div>
+				<div className="col-span-2">
+					<select
+						value={select}
+						onChange={handleChange}
+						className="outline-none bg-eerie w-full px-2 py-2 rounded text-white"
+					>
+						{options?.map((option, key) => <option key={key} value={option.value}>{option.text}</option>)}
+					</select>
+				</div>
+			</div> */}
 		</aside>
 	);
 }

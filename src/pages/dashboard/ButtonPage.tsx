@@ -1,26 +1,56 @@
-import { AppButton, AppFormSelect } from "@/components/app";
-import { useState } from "react";
+import { AppButton, type AppButtonTypes } from "@/components/app";
+import { useToolbarStore } from "@/stores";
+import { type ToolbarItemsProp } from "@/stores/toolbarStore";
+import { useEffect } from "react";
 
 export default function ButtonPage() {
-	const [select, setSelect] = useState<string|string[]>();
-	const options = [
-		{ text: 'Lenovo', value: 'lenovo' },
-		{ text: 'HP', value: 'hp' },
-		{ text: 'Acer', value: 'acer' },
-		{ text: 'MSI', value: 'msi' },
-		{ text: 'Dell', value: 'dell' },
+	const setItems = useToolbarStore(state => state.setItems);
+	const items = useToolbarStore(state => state.items as ToolbarItemsProp<keyof AppButtonTypes.Prop>[]);
+
+	const initialItems: ToolbarItemsProp<keyof AppButtonTypes.Prop>[] = [
+		{
+			type: 'input',
+			prop: 'children',
+			title: 'Text',
+			value: 'Button',
+		},
+		{
+			type: 'select',
+			prop: 'variant',
+			title: 'Variant',
+			value: '',
+			options: ['solid', 'outlined', 'text'],
+		},
+		{
+			type: 'checkbox',
+			prop: 'disabled',
+			title: 'Disabled',
+			value: false,
+		},
 	];
+	
+	useEffect(() => {
+		setItems(initialItems);
+	}, []);
+
+	const buttonProps = (): AppButtonTypes.Prop => {
+		const props: AppButtonTypes.Prop = {};
+		items.map((item) => {
+			props[item.prop] = item.value;
+		})
+		return props;
+	}
 	
 	return (
 		<div className="bg-[#252525] flex flex-col gap-3 justify-center items-center w-full">
 			<div>
 				<AppButton
 					color="purple-500"
+					{...buttonProps()}
 				>
-					Button
 				</AppButton>
 			</div>
-			<div>
+			{/* <div>
 				<AppFormSelect
 					items={options}
 					modelValue={select}
@@ -29,7 +59,7 @@ export default function ButtonPage() {
 					color="indigo-500"
 				>
 				</AppFormSelect>
-			</div>
+			</div> */}
 		</div>
 	);
 }
