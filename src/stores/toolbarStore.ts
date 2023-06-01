@@ -1,9 +1,10 @@
+import { OptionProp } from '@/components/app/types';
 import { type StateCreator, create } from 'zustand';
 
 interface Toolbar<P extends string> {
 	items: ToolbarItemsProp<P>[]
 	setItems: (newItem: ToolbarItemsProp<P>[]) => void
-	setValue: (prop: string, value: string) => void
+	setValue: (prop: string, value: any) => void
 }
 
 export const useToolbarStore = create(<P extends string>(set: Parameters<StateCreator<Toolbar<P>>>[0]): Toolbar<P> => ({
@@ -14,7 +15,7 @@ export const useToolbarStore = create(<P extends string>(set: Parameters<StateCr
 	setValue: async (prop, value) => {
 		set((state) => {
 			const newItems = [...state.items].map((item) => {
-				if (item.prop===prop) item.value = value
+				if (item.prop===prop) item.value = value;
 				return item;
 			});
 			return { 
@@ -24,14 +25,14 @@ export const useToolbarStore = create(<P extends string>(set: Parameters<StateCr
 	},
 }));
 
-export type ToolbarItemType = 'input'|'select'|'checkbox';
+export type ToolbarItemType = 'input'|'select'|'toggle'|'segment';
 
 export interface ToolbarItemsProp<P extends string=''> {
 	type: ToolbarItemType
 	prop: P
 	title: string
 	value: string|boolean
-	options?: string[]
+	options?: OptionProp[]|string[]
 }
 
 // input

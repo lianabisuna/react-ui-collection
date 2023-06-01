@@ -75,7 +75,7 @@ export default function AppButton(props: Prop) {
   /** INPUT PROPS */
 
   const inputProps = () => {
-    const { children, size, color, icon, variant, tone, loading, ...rest } = props;
+    const { children, size, color, icon, variant, tone, loading, rounded, ...rest } = props;
     return rest;
   }
 
@@ -95,7 +95,7 @@ export default function AppButton(props: Prop) {
       {...inputProps()}
       className={`
         ${classList}
-        inline-flex items-center justify-center text-center rounded font-medium
+        inline-flex items-center justify-center text-center font-medium
         ${props.disabled || props.loading ? 'opacity-50 pointer-events-none' : ''}
         ${props.icon ? 'aspect-square' : ''}
         ${props.variant==='text' ? '' : 'active:shadow'}

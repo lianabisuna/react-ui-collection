@@ -1,5 +1,5 @@
 import { HtmlHTMLAttributes, useState } from "react";
-import { ClassBinding, InputVariant, TailwindColor } from "./types";
+import { ClassBinding, InputVariant, OptionProp, TailwindColor } from "./types";
 import AppFormContainer from "./AppFormContainer";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
@@ -16,8 +16,8 @@ export default function AppFormSelect(props: Prop) {
   /** FILTERED ITEMS */
 
   const filteredItems = () => {
-    const _items = [ ...props.items as ItemsProp[] ];
-    return _items.map((item: ItemsProp) => {
+    const _items = [ ...props.items as OptionProp[] ];
+    return _items.map((item: OptionProp) => {
       if (typeof item === 'string')
         return { text: item, value: item }
       else
@@ -31,7 +31,7 @@ export default function AppFormSelect(props: Prop) {
   const filteredModelValue = () => {
     if (!props.modelValue) return ''
 
-    const _items = [ ...props.items as ItemsProp[] ];
+    const _items = [ ...props.items as OptionProp[] ];
     if (!props.multiple) {
       const index = _items.findIndex(e => e.value === props.modelValue);
       if (index < 0) return
@@ -52,7 +52,7 @@ export default function AppFormSelect(props: Prop) {
 
   /** UPDATE MODEL VALUE */
 
-  const updateModelValue = (value: string, index: number) => {
+  const updateModelValue = (value: any, index: number) => {
     if (!props.multiple) {
       props.updateModelValue && props.updateModelValue(value);
     }
@@ -81,7 +81,7 @@ export default function AppFormSelect(props: Prop) {
 
   /** CHECK SELECTED ITEM */
 
-  const isSelected = (value: string) => {
+  const isSelected = (value: any) => {
     if (!props.multiple) {
       return props.modelValue === value
     }
@@ -207,7 +207,7 @@ export type SelectSize = 'xs'|'sm'|'md'|'lg'|'xl'
 interface Prop extends HtmlHTMLAttributes<unknown> {
 	modelValue?: string|string[]
   updateModelValue?: (value: string|string[])=>void
-  items?: ItemsProp[]|string[]
+  items?: OptionProp[]|string[]
   multiple?: boolean
   chip?: boolean
   emptyText?: string
@@ -226,7 +226,3 @@ interface Prop extends HtmlHTMLAttributes<unknown> {
 	block?: boolean
 }
 
-interface ItemsProp {
-  text?: string
-  value?: any
-}

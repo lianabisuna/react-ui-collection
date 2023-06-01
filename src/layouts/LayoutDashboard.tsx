@@ -1,7 +1,7 @@
 // Imports
 import { AppButton } from "@/components/app";
+import { OptionProp } from "@/components/app/types";
 import { useNavStore, useToolbarStore } from "@/stores";
-import { ToolbarItemType } from "@/stores/toolbarStore";
 import * as HeroIcons from '@heroicons/react/24/outline'
 import {
 	Bars3Icon,
@@ -128,38 +128,70 @@ function Sidebar() {
 	// 	setSelect(event.currentTarget.value);
 	// }
 
-	const ToolbarItem = (type: ToolbarItemType, prop: string, value: any, options: any) => {
+	function ToolbarItem<P extends string=''>(params: ToolbarItemsProp<P>) {
+		const { type, prop, value } = params;
+		const filteredOptions = () => {
+			const _options = 'options' in params ? [ ...params.options as OptionProp[] ] : [];
+			return _options?.map((option: OptionProp) => {
+				if (typeof option === 'string')
+					return { text: option, value: option }
+				else
+					return option
+			})
+		};
+
 		switch (type) {
 			case 'input':
 				return (
 					<input
 						type="text"
-						className="outline-none bg-eerie w-full px-3 py-2 rounded text-white"
-						value={value}
+						className="outline-none bg-eerie w-full px-3 py-2 rounded text-white font-medium"
+						value={`${value}`}
 						onChange={(e)=>setValue(prop, e.target.value)}
 					/>
 				);
 			case 'select':
 				return (
 					<select
-						value={value}
+						value={`${value}`}
 						onChange={(e)=>setValue(prop, e.currentTarget.value)}
-						className="outline-none bg-eerie w-full px-2 py-2 rounded text-white"
+						className="outline-none bg-eerie w-full px-2 py-2 rounded text-white font-medium"
 					>
-						{options?.map((option: any, key: any) => <option key={key} value={option}>{option}</option>)}
+						{filteredOptions()?.map((option, key) => <option key={key} value={option.value}>{option.text}</option>)}
 					</select>
 				);
-			case 'checkbox':
+			case 'toggle':
 				return (
-					<label className="relative inline-flex items-center mr-5 cursor-pointer w-full">
-						<input
-							type="checkbox"
-							className="sr-only peer"
-							checked={value}
-							onChange={(e) => setValue(prop, e.target.checked)}
-						/>
-						<div className="w-full h-9 bg-eerie rounded peer peer-checked:after:translate-x-full after:w-[calc(50%-2px)] peer-checked:after:content-['Yes'] after:content-['No'] after:absolute after:top-0.5 after:left-[2px] peer-checked:after:right-[2px] after:bg-neutral-500 after:text-white after:rounded after:h-8 after:transition-all after:flex after:justify-center after:items-center"></div>
-					</label>
+					<div className="grid grid-cols-2 gap-0.5 rounded bg-eerie p-0.5">
+						<button
+							className={`${value ? 'bg-neutral-500' : 'bg-transparent'} text-white rounded placeholder:before:font-medium py-1.5`}
+							onClick={()=>setValue(prop, true)}
+						>
+							Yes
+						</button>
+						<button
+							className={`${value ? 'bg-transparent' : 'bg-neutral-500'} text-white rounded font-medium py-1.5`}
+							onClick={()=>setValue(prop, false)}
+						>
+							No
+						</button>
+					</div>
+				);
+			case 'segment':
+				return (
+					<div className={`grid grid-cols-${filteredOptions() ? filteredOptions().length : 'none'} gap-0.5 rounded bg-eerie p-0.5`}>
+						{filteredOptions()?.map((option, key) => {
+							return (
+								<button
+									key={key}
+									className={`${value===option.value ? 'bg-neutral-500' : 'bg-transparent'} text-white rounded font-medium py-1.5`}
+									onClick={()=>setValue(prop, `${option.value}`)}
+								>
+									{option.text}
+								</button>
+							)
+						})}
+					</div>
 				);
 			default:
 				break;
@@ -178,7 +210,7 @@ function Sidebar() {
 					<div key={key} className="grid grid-cols-3">
 						<div className="col-span-1 text-sm font-medium text-battle flex items-center">{item.title}</div>
 						<div className="col-span-2">
-							{ToolbarItem(item.type, item.prop, item.value, item.options)}
+							{ToolbarItem(item)}
 						</div>
 					</div>
 				)

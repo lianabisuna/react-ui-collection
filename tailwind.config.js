@@ -21,6 +21,10 @@ module.exports = {
       pattern: /(border)-(b)-./,
       variants: [],
     },
+    {
+      pattern: /(grid-cols)-(1|2|3|4|5)-./,
+      variants: [],
+    },
   ],
   darkMode: ['class', '[theme="dark"]'],
   content: [

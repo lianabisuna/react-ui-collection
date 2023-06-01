@@ -19,13 +19,58 @@ export default function ButtonPage() {
 			prop: 'variant',
 			title: 'Variant',
 			value: '',
-			options: ['solid', 'outlined', 'text'],
+			options: [
+				{ text: 'Solid', value: 'solid' },
+				{ text: 'Outlined', value: 'outlined' },
+				{ text: 'Text', value: 'text' },
+			],
 		},
 		{
-			type: 'checkbox',
+			type: 'toggle',
 			prop: 'disabled',
 			title: 'Disabled',
 			value: false,
+		},
+		{
+			type: 'toggle',
+			prop: 'loading',
+			title: 'Loading',
+			value: false,
+		},
+		{
+			type: 'segment',
+			prop: 'size',
+			title: 'Size',
+			value: 'md',
+			options: [
+				{ text: 'XS', value: 'xs' },
+				{ text: 'S', value: 'sm' },
+				{ text: 'M', value: 'md' },
+				{ text: 'L', value: 'lg' },
+				{ text: 'XL', value: 'xl' },
+			],
+		},
+		{
+			type: 'segment',
+			prop: 'tone',
+			title: 'Tone',
+			value: 'dark',
+			options: [
+				{ text: 'Light', value: 'light' },
+				{ text: 'Dark', value: 'dark' },
+			],
+		},
+		{
+			type: 'select',
+			prop: 'rounded',
+			title: 'Rounded',
+			value: '',
+			options: [
+				{ text: 'None', value: 'none' },
+				{ text: 'Small', value: 'sm' },
+				{ text: 'Default', value: '' },
+				{ text: 'Large', value: 'lg' },
+			],
 		},
 	];
 	
