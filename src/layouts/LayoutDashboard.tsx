@@ -2,6 +2,7 @@
 import { AppButton } from "@/components/app";
 import { OptionProp } from "@/components/app/types";
 import { useNavStore, useToolbarStore } from "@/stores";
+import { ToolbarItemsProp } from "@/stores/toolbarStore";
 import * as HeroIcons from '@heroicons/react/24/outline'
 import {
 	Bars3Icon,
@@ -108,25 +109,7 @@ function Sidebar() {
 	const setValue = useToolbarStore((state) => state.setValue);
 
 
-	/** HANDLE INPUT CHANGE */
-
-	// const [input, setInput] = useState('');
-
-
-	/** HANDLE SELECT CHANGE */
-
-	// Data
-	// const [select, setSelect] = useState<string|string[]>('');
-	// const options = [
-	// 	{ text: 'Solid', value: 'solid' },
-	// 	{ text: 'Outlined', value: 'outlined' },
-	// 	{ text: 'Text', value: 'text' },
-	// ];
-
-	// Function
-	// function handleChange(event: React.FormEvent<HTMLSelectElement>) {
-	// 	setSelect(event.currentTarget.value);
-	// }
+	/** TOOLBAR ITEM COMPONENT */
 
 	function ToolbarItem<P extends string=''>(params: ToolbarItemsProp<P>) {
 		const { type, prop, value } = params;
@@ -139,6 +122,21 @@ function Sidebar() {
 					return option
 			})
 		};
+
+		const colors = [
+			'blue-500',
+			'red-500',
+			'green-500',
+			'amber-500',
+			'indigo-500',
+			'pink-500',
+			'purple-500',
+			'lime-500',
+			'yellow-500',
+			'rose-500',
+			'emerald-500',
+			'fuchsia-500',
+		];
 
 		switch (type) {
 			case 'input':
@@ -193,6 +191,31 @@ function Sidebar() {
 						})}
 					</div>
 				);
+				case 'color':
+					return (
+						<div className="grid grid-cols-6 gap-1.5">
+								{colors.map((color, key) => {
+									return (
+										<button
+											key={key}
+											className={`${value===color ? 'border-2 border-battle' : ''} rounded-full p-0.5 h-8 w-8`}
+											onClick={()=>setValue(prop, `${color}`)}
+										>
+											<div
+												className={`bg-${color} rounded-full aspect-square`}
+											>
+											</div>
+										</button>
+									)
+								})}
+							</div>
+					);
+					case 'icon':
+						return (
+							<div className="grid grid-cols-8 bg-red-100 gap-1.5">
+								Icon
+							</div>
+						);
 			default:
 				break;
 		}

@@ -25,7 +25,7 @@ export const useToolbarStore = create(<P extends string>(set: Parameters<StateCr
 	},
 }));
 
-export type ToolbarItemType = 'input'|'select'|'toggle'|'segment';
+export type ToolbarItemType = 'input'|'select'|'toggle'|'segment'|'color'|'icon';
 
 export interface ToolbarItemsProp<P extends string=''> {
 	type: ToolbarItemType

@@ -72,6 +72,18 @@ export default function ButtonPage() {
 				{ text: 'Large', value: 'lg' },
 			],
 		},
+		{
+			type: 'color',
+			prop: 'color',
+			title: 'Color',
+			value: 'blue-500',
+		},
+		{
+			type: 'icon',
+			prop: 'Icon',
+			title: 'Icon',
+			value: '',
+		},
 	];
 	
 	useEffect(() => {
