@@ -63,7 +63,7 @@ function Header() {
   const setMenu = useNavStore((state) => state.setMenu);
 
 	return (
-		<header className="flex items-center justify-between h-14 w-full bg-[#111111] px-3">
+		<header className="flex shrink-0 items-center justify-between h-14 w-full bg-[#111111] px-3">
 			<ul className="flex gap-3 items-center">
 				<li>
 					<button
@@ -278,29 +278,6 @@ function Sidebar() {
 					</div>
 				)
 			})}
-			{/* <div className="grid grid-cols-3">
-				<div className="col-span-1 text-sm font-medium text-battle flex items-center">Value</div>
-				<div className="col-span-2">
-					<input
-						type="text"
-						className="outline-none bg-eerie w-full px-3 py-2 rounded text-white"
-						value={input}
-						onChange={(e)=>setInput(e.target.value)}
-					/>
-				</div>
-			</div>
-			<div className="grid grid-cols-3">
-				<div className="col-span-1 text-sm font-medium text-battle flex items-center">Variant</div>
-				<div className="col-span-2">
-					<select
-						value={select}
-						onChange={handleChange}
-						className="outline-none bg-eerie w-full px-2 py-2 rounded text-white"
-					>
-						{options?.map((option, key) => <option key={key} value={option.value}>{option.text}</option>)}
-					</select>
-				</div>
-			</div> */}
 		</aside>
 	);
 }
