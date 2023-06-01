@@ -80,7 +80,7 @@ export default function ButtonPage() {
 		},
 		{
 			type: 'icon',
-			prop: 'Icon',
+			prop: 'icon',
 			title: 'Icon',
 			value: '',
 		},

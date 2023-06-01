@@ -1,8 +1,18 @@
 import { ButtonHTMLAttributes } from "react";
 import { ColorTone, RoundedSize, TailwindColor } from "./types";
 import { ArrowPathIcon } from "@heroicons/react/20/solid";
+import * as HeroIcons from '@heroicons/react/24/outline'
+import { IconName, IconProps } from "@/layouts/LayoutDashboard";
 
 export default function AppButton(props: Prop) {
+  const DynamicHeroIcon = ({ icon, classList }: IconProps) => {
+    const SingleIcon = HeroIcons[icon] || 'CogIcon';
+  
+    return (
+      <SingleIcon className={classList} />
+    );
+  };
+
   /** CLASSES */
 
   const sizeClass = () => {
@@ -102,7 +112,10 @@ export default function AppButton(props: Prop) {
       `}
     >
       {props.loading && <ArrowPathIcon className="h-5 w-5 mr-2" />}
-      {props.children}
+      {props.icon && typeof props.icon === 'string'
+        ? (<DynamicHeroIcon icon={props.icon} classList="h-5 w-5 path-stroke-2" />)
+        : props.children
+      }
     </button>
   );
 }
@@ -124,7 +137,7 @@ export type Prop = {
   disabled?: boolean
   size?: ButtonSize
   color?: TailwindColor
-  icon?: boolean
+  icon?: boolean|IconName
   variant?: ButtonVariant
   tone?: ColorTone
   loading?: boolean

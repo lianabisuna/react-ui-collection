@@ -17,6 +17,15 @@ import {
 import { type SetStateAction, createContext, useContext, useState, type Dispatch } from "react";
 import { Outlet } from "react-router-dom";
 
+// Dynamic Icon
+const DynamicHeroIcon = ({ icon, classList }: IconProps) => {
+	const SingleIcon = HeroIcons[icon];
+
+	return (
+		<SingleIcon className={classList} />
+	);
+};
+
 // Provider
 const SidebarContext = createContext<SidebarContext|undefined>(undefined);
 
@@ -138,6 +147,24 @@ function Sidebar() {
 			'fuchsia-500',
 		];
 
+		const icons = [
+			'',
+			'BoltIcon',
+			'BuildingOfficeIcon',
+			'CameraIcon',
+			'Cog6ToothIcon',
+			'EnvelopeIcon',
+			'ExclamationTriangleIcon',
+			'EyeIcon',
+			'GiftIcon',
+			'HeartIcon',
+			'HomeIcon',
+			'LightBulbIcon',
+			'MagnifyingGlassIcon',
+			'MicrophoneIcon',
+			'SpeakerWaveIcon',
+		] as const;
+
 		switch (type) {
 			case 'input':
 				return (
@@ -194,26 +221,39 @@ function Sidebar() {
 				case 'color':
 					return (
 						<div className="grid grid-cols-6 gap-1.5">
-								{colors.map((color, key) => {
-									return (
-										<button
-											key={key}
-											className={`${value===color ? 'border-2 border-battle' : ''} rounded-full p-0.5 h-8 w-8`}
-											onClick={()=>setValue(prop, `${color}`)}
+							{colors.map((color, key) => {
+								return (
+									<button
+										key={key}
+										className={`${value===color ? 'border-2 border-battle' : ''} rounded-full p-0.5 h-8 w-8`}
+										onClick={()=>setValue(prop, `${color}`)}
+									>
+										<div
+											className={`bg-${color} rounded-full aspect-square`}
 										>
-											<div
-												className={`bg-${color} rounded-full aspect-square`}
-											>
-											</div>
-										</button>
-									)
-								})}
-							</div>
+										</div>
+									</button>
+								)
+							})}
+						</div>
 					);
 					case 'icon':
 						return (
-							<div className="grid grid-cols-8 bg-red-100 gap-1.5">
-								Icon
+							<div className="grid grid-cols-5 gap-1.5">
+								{icons.map((icon, key) => {
+									return (
+										<button
+											key={key}
+											className={`${value===icon ? 'bg-battle' : ''} text-white rounded p-0.5 h-9 w-9 border border-eerie flex items-center justify-center`}
+											onClick={()=>setValue(prop, `${icon}`)}
+										>
+											{icon
+												? (<DynamicHeroIcon icon={icon} classList="h-5 w-5 path-stroke-2" />)
+												: (<div></div>)
+											}
+										</button>
+									)
+								})}
 							</div>
 						);
 			default:
@@ -231,7 +271,7 @@ function Sidebar() {
 			{items?.map((item, key) => {
 				return (
 					<div key={key} className="grid grid-cols-3">
-						<div className="col-span-1 text-sm font-medium text-battle flex items-center">{item.title}</div>
+						<div className="col-span-1 text-sm font-medium text-battle flex items-start pt-2">{item.title}</div>
 						<div className="col-span-2">
 							{ToolbarItem(item)}
 						</div>
@@ -419,20 +459,12 @@ function Menu() {
 		},
 	] as const;
 
-	const DynamicHeroIcon = ({ icon }: IconProps) => {
-		const SingleIcon = HeroIcons[icon];
-
-		return (
-			<SingleIcon className="h-5 w-5 text-white mr-1.5" />
-		);
-	};
-
 	return (
 	<div className="bg-[#111111] absolute top-14 left-0 w-full flex-1 h-[calc(100%-3.5rem)] border-t border-[#252525] py-5 z-50 grid grid-cols-4 overflow-y-auto overflow-x-hidden scrollbar gap-3">
 			{menuItems.map((menuItem,key) =>
 				<div key={key}>
 					<div className="flex mb-3 px-6">
-						<DynamicHeroIcon icon={menuItem.icon} />
+						<DynamicHeroIcon icon={menuItem.icon} classList="h-5 w-5 text-white mr-1.5" />
 						<p className="text-white text-sm font-medium">{menuItem.title}</p>
 					</div>
 					<ul className="flex flex-col">
@@ -453,7 +485,8 @@ function Menu() {
 	);
 }
 
-type IconName = keyof typeof HeroIcons;
-interface IconProps {
+export type IconName = keyof typeof HeroIcons;
+export interface IconProps {
 	icon: IconName;
+	classList: string;
 }
