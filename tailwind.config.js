@@ -22,7 +22,7 @@ module.exports = {
       variants: [],
     },
     {
-      pattern: /(grid-cols)-(1|2|3|4|5)-./,
+      pattern: /(grid-cols)-(1|2|3|4|5)/,
       variants: [],
     },
   ],

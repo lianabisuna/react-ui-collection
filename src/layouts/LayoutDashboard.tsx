@@ -5,7 +5,6 @@ import { CardScreen } from "@/components/cards";
 import { useNavStore, useToolbarStore } from "@/stores";
 import { ScreenSize } from "@/stores/navStore";
 import { ToolbarItemsProp } from "@/stores/toolbarStore";
-import { XMarkIcon } from "@heroicons/react/20/solid";
 import * as HeroIcons from '@heroicons/react/24/outline'
 import {
 	Bars3Icon,
@@ -119,7 +118,6 @@ function Header() {
 function Sidebar() {
 	const sidebarContext = useContext(SidebarContext);
 	const sidebar = sidebarContext ? sidebarContext.sidebar : false;
-	const setSidebar = sidebarContext ? sidebarContext.setSidebar : ()=>({});
 
 
 	/** HANDLE TOOLBAR ITEMS */
