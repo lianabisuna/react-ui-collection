@@ -274,25 +274,11 @@ function Sidebar() {
 	return (
 		<aside
 			className={`
-				xs:w-80 xs:border-0 absolute z-40 inset-y-0 right-0 w-full shrink-0 md:static md:border-t md:border-[#252525] bg-[#111111] overflow-hidden
+				xs:w-80 xs:border-0 absolute z-40 inset-y-0 right-0 w-full shrink-0 md:static md:border-t md:border-[#252525] bg-[#111111] overflow-hidden top-14
 				${sidebar ? '' : 'max-w-0'}
 			`}
 		>
 			<div className="p-3 flex flex-col gap-3 overflow-y-auto overflow-x-hidden scrollbar h-full">
-				<div className="md:hidden flex items-center justify-end w-full">
-					<AppButton
-						icon
-						size="xs"
-						color="eerie"
-						tone="dark"
-						variant="solid"
-						onClick={()=>setSidebar(false)}
-					>
-						<XMarkIcon
-							className="h-5 w-5 transform duration-200 path-stroke-2"
-						/>
-					</AppButton>
-				</div>
 				{items?.map((item, key) => {
 					return (
 						<div key={key} className="grid grid-cols-3">
