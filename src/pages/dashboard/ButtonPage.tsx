@@ -99,14 +99,12 @@ export default function ButtonPage() {
 	}
 	
 	return (
-		<div className="bg-[#252525] flex flex-col gap-3 justify-center items-center w-full">
-			<div>
-				<AppButton
-					color="purple-500"
-					{...buttonProps()}
-				>
-				</AppButton>
-			</div>
+		<div>
+			<AppButton
+				color="purple-500"
+				{...buttonProps()}
+			>
+			</AppButton>
 			{/* <div>
 				<AppFormSelect
 					items={options}

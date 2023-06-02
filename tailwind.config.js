@@ -37,6 +37,9 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
+      maxWidth: {
+        '8xl': '90rem',
+      },
       colors: {
         primary: colors.blue,
         night: '#111111',

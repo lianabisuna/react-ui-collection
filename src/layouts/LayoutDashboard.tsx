@@ -1,7 +1,9 @@
 // Imports
 import { AppButton } from "@/components/app";
 import { OptionProp } from "@/components/app/types";
+import { CardScreen } from "@/components/cards";
 import { useNavStore, useToolbarStore } from "@/stores";
+import { ScreenSize } from "@/stores/navStore";
 import { ToolbarItemsProp } from "@/stores/toolbarStore";
 import * as HeroIcons from '@heroicons/react/24/outline'
 import {
@@ -37,11 +39,15 @@ export default function LayoutDashboard() {
 		<SidebarContext.Provider value={{sidebar, setSidebar}}>
 			<main className="flex flex-col w-full">
 				<Header />
-				<div className="flex flex-1">
-					<Outlet />
+				<div className="flex flex-1 overflow-hidden mx-auto max-w-8xl w-full">
+					<div className="relative flex justify-center w-full bg-dotted">
+						<CardScreen>
+							<Outlet />
+						</CardScreen>
+						<Footer />
+					</div>
 					<Sidebar />
 				</div>
-				<Footer />
 				{menu && <Menu />}
 			</main>
 			</SidebarContext.Provider>
@@ -63,46 +69,48 @@ function Header() {
   const setMenu = useNavStore((state) => state.setMenu);
 
 	return (
-		<header className="flex shrink-0 items-center justify-between h-14 w-full bg-[#111111] px-3">
-			<ul className="flex gap-3 items-center">
-				<li>
-					<button
-						className="aspect-square p-2 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 animate-glow active:opacity-80 rounded"
-					>
-						<CubeIcon className="h-5 w-5 text-white" />
-					</button>
-				</li>
-				<li>
-					<AppButton
-						size="sm"
-						color="eerie"
-						tone="dark"
-						onClick={()=>setMenu(!menu)}
-					>
-						<span>Button</span>
-						<ChevronDownIcon className="h-3 w-3 ml-3 path-stroke-2" />
-					</AppButton>
-				</li>
-			</ul>
-			<ul className="flex gap-3">
-				<li>
-					<AppButton
-						icon
-						size="xs"
-						color="eerie"
-						tone="dark"
-						variant={sidebar?'solid':'text'}
-						onClick={()=>setSidebar(!sidebar)}
-					>
-						<Bars3Icon
-							className={`
-								h-5 w-5 transform duration-200 path-stroke-2
-								${sidebar ? 'rotate-90' : ''}
-							`}
-						/>
-					</AppButton>
-				</li>
-			</ul>
+		<header className="flex items-center h-14 w-full bg-[#111111]">
+			<div className="flex shrink-0 items-center justify-between w-full mx-auto max-w-8xl px-3">
+				<ul className="flex gap-3 items-center mx-auto max-w-8xl w-full">
+					<li>
+						<button
+							className="aspect-square p-2 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 animate-glow active:opacity-80 rounded"
+						>
+							<CubeIcon className="h-5 w-5 text-white" />
+						</button>
+					</li>
+					<li>
+						<AppButton
+							size="sm"
+							color="eerie"
+							tone="dark"
+							onClick={()=>setMenu(!menu)}
+						>
+							<span>Button</span>
+							<ChevronDownIcon className="h-3 w-3 ml-3 path-stroke-2" />
+						</AppButton>
+					</li>
+				</ul>
+				<ul className="flex gap-3">
+					<li>
+						<AppButton
+							icon
+							size="xs"
+							color="eerie"
+							tone="dark"
+							variant={sidebar?'solid':'text'}
+							onClick={()=>setSidebar(!sidebar)}
+						>
+							<Bars3Icon
+								className={`
+									h-5 w-5 transform duration-200 path-stroke-2
+									${sidebar ? 'rotate-90' : ''}
+								`}
+							/>
+						</AppButton>
+					</li>
+				</ul>
+			</div>
 		</header>
 	);
 }
@@ -264,29 +272,32 @@ function Sidebar() {
 	return (
 		<aside
 			className={`
-				xs:w-80 xs:border-0 absolute z-40 inset-y-0 right-0 w-full shrink-0 md:static md:border-t md:border-[#252525] bg-[#111111] p-3 flex flex-col gap-3
+				xs:w-80 xs:border-0 absolute z-40 inset-y-0 right-0 w-full shrink-0 md:static md:border-t md:border-[#252525] bg-[#111111] overflow-hidden
 				${sidebar ? '' : 'max-w-0'}
 			`}
 		>
-			{items?.map((item, key) => {
-				return (
-					<div key={key} className="grid grid-cols-3">
-						<div className="col-span-1 text-sm font-medium text-battle flex items-start pt-2">{item.title}</div>
-						<div className="col-span-2">
-							{ToolbarItem(item)}
+			<div className="p-3 flex flex-col gap-3 overflow-y-auto overflow-x-hidden scrollbar h-full">
+				{items?.map((item, key) => {
+					return (
+						<div key={key} className="grid grid-cols-3">
+							<div className="col-span-1 text-sm font-medium text-battle flex items-start pt-2">{item.title}</div>
+							<div className="col-span-2">
+								{ToolbarItem(item)}
+							</div>
 						</div>
-					</div>
-				)
-			})}
+					)
+				})}
+			</div>
 		</aside>
 	);
 }
 
 function Footer() {
-	const [active, setActive] = useState(false);
+	const screen = useNavStore((state: { screen: ScreenSize }) => state.screen);
+  const setScreen = useNavStore((state) => state.setScreen);
 
 	return (
-		<div className="fixed bg-[#111111] rounded h-14 bottom-5 left-1/2 -translate-x-1/2 flex justify-center items-center px-3">
+		<div className="absolute bg-[#111111] rounded h-14 bottom-5 left-1/2 -translate-x-1/2 flex justify-center items-center px-3">
 			<ul className="flex gap-3">
 				<li>
 					<AppButton
@@ -305,20 +316,8 @@ function Footer() {
 						size="xs"
 						color="eerie"
 						tone="dark"
-						variant={active?'solid':'text'}
-						onClick={()=>setActive(!active)}
-					>
-						<DevicePhoneMobileIcon className="h-5 w-5" />
-					</AppButton>
-				</li>
-				<li>
-					<AppButton
-						icon
-						size="xs"
-						color="eerie"
-						tone="dark"
-						variant={active?'solid':'text'}
-						onClick={()=>setActive(!active)}
+						variant={screen==='desktop'?'solid':'text'}
+						onClick={()=>setScreen('desktop')}
 					>
 						<ComputerDesktopIcon className="h-5 w-5" />
 					</AppButton>
@@ -329,10 +328,22 @@ function Footer() {
 						size="xs"
 						color="eerie"
 						tone="dark"
-						variant={active?'solid':'text'}
-						onClick={()=>setActive(!active)}
+						variant={screen==='tablet'?'solid':'text'}
+						onClick={()=>setScreen('tablet')}
 					>
 						<DeviceTabletIcon className="h-5 w-5" />
+					</AppButton>
+				</li>
+				<li>
+					<AppButton
+						icon
+						size="xs"
+						color="eerie"
+						tone="dark"
+						variant={screen==='mobile'?'solid':'text'}
+						onClick={()=>setScreen('mobile')}
+					>
+						<DevicePhoneMobileIcon className="h-5 w-5" />
 					</AppButton>
 				</li>
 				<li>
