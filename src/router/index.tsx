@@ -24,7 +24,7 @@ const routes: RouteObject[] = [
         ],
       },
       {
-        path: '/button',
+        path: '/',
         element: <LayoutDashboard />,
         children: [
           {
