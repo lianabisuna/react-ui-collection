@@ -5,6 +5,7 @@ import { CardScreen } from "@/components/cards";
 import { useNavStore, useToolbarStore } from "@/stores";
 import { ScreenSize } from "@/stores/navStore";
 import { ToolbarItemsProp } from "@/stores/toolbarStore";
+import { XMarkIcon } from "@heroicons/react/20/solid";
 import * as HeroIcons from '@heroicons/react/24/outline'
 import {
 	Bars3Icon,
@@ -118,6 +119,7 @@ function Header() {
 function Sidebar() {
 	const sidebarContext = useContext(SidebarContext);
 	const sidebar = sidebarContext ? sidebarContext.sidebar : false;
+	const setSidebar = sidebarContext ? sidebarContext.setSidebar : ()=>({});
 
 
 	/** HANDLE TOOLBAR ITEMS */
@@ -277,6 +279,20 @@ function Sidebar() {
 			`}
 		>
 			<div className="p-3 flex flex-col gap-3 overflow-y-auto overflow-x-hidden scrollbar h-full">
+				<div className="md:hidden flex items-center justify-end w-full">
+					<AppButton
+						icon
+						size="xs"
+						color="eerie"
+						tone="dark"
+						variant="solid"
+						onClick={()=>setSidebar(false)}
+					>
+						<XMarkIcon
+							className="h-5 w-5 transform duration-200 path-stroke-2"
+						/>
+					</AppButton>
+				</div>
 				{items?.map((item, key) => {
 					return (
 						<div key={key} className="grid grid-cols-3">
@@ -310,7 +326,7 @@ function Footer() {
 						<ChevronLeftIcon className="h-5 w-5" />
 					</AppButton>
 				</li>
-				<li>
+				<li className="hidden md:block">
 					<AppButton
 						icon
 						size="xs"
@@ -322,7 +338,7 @@ function Footer() {
 						<ComputerDesktopIcon className="h-5 w-5" />
 					</AppButton>
 				</li>
-				<li>
+				<li className="hidden md:block">
 					<AppButton
 						icon
 						size="xs"
@@ -334,7 +350,7 @@ function Footer() {
 						<DeviceTabletIcon className="h-5 w-5" />
 					</AppButton>
 				</li>
-				<li>
+				<li className="hidden md:block">
 					<AppButton
 						icon
 						size="xs"
@@ -448,7 +464,8 @@ function Menu() {
 	] as const;
 
 	return (
-	<div className="bg-[#111111] absolute top-14 left-0 w-full flex-1 h-[calc(100%-3.5rem)] border-t border-[#252525] py-5 z-50 grid grid-cols-4 overflow-y-auto overflow-x-hidden scrollbar gap-3">
+	<div className="bg-[#111111] absolute top-14 left-0 w-full flex-1 h-[calc(100%-3.5rem)] border-t border-[#252525] py-5 z-50 overflow-y-auto overflow-x-hidden scrollbar">
+		<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto max-w-8xl w-full gap-y-5 gap-x-3 md:gap-y-3 md:gap-x-3">
 			{menuItems.map((menuItem,key) =>
 				<div key={key}>
 					<div className="flex mb-3 px-6">
@@ -457,7 +474,7 @@ function Menu() {
 					</div>
 					<ul className="flex flex-col">
 						{menuItem.items.map((item) =>
-							<li>
+							<li className="mr-6">
 								<button className={`
 									py-2 rounded text-sm font-medium mx-3 px-3 w-full text-start
 									${item.component==='Button' ? 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 animate-glow text-white' : 'text-battle hover:text-white'}
@@ -469,6 +486,7 @@ function Menu() {
 					</ul>
 				</div>
 			)}
+		</div>
 		</div>
 	);
 }
