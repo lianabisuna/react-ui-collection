@@ -84,7 +84,7 @@ export default function AppButton(props: Prop) {
 
   /** INPUT PROPS */
 
-  const inputProps = () => {
+  const componentProps = () => {
     const { children, size, color, icon, variant, tone, loading, rounded, ...rest } = props;
     return rest;
   }
@@ -102,7 +102,7 @@ export default function AppButton(props: Prop) {
 
   return (
     <button
-      {...inputProps()}
+      {...componentProps()}
       className={`
         ${classList}
         inline-flex items-center justify-center text-center font-medium

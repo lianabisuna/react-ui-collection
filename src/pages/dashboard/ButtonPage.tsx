@@ -105,16 +105,6 @@ export default function ButtonPage() {
 				{...buttonProps()}
 			>
 			</AppButton>
-			{/* <div>
-				<AppFormSelect
-					items={options}
-					modelValue={select}
-					updateModelValue={(value)=>setSelect(value)}
-					placeholder="Select an option"
-					color="indigo-500"
-				>
-				</AppFormSelect>
-			</div> */}
 		</div>
 	);
 }

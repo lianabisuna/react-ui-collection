@@ -5,6 +5,7 @@ import { CardScreen } from "@/components/cards";
 import { useNavStore, useToolbarStore } from "@/stores";
 import { ScreenSize } from "@/stores/navStore";
 import { ToolbarItemsProp } from "@/stores/toolbarStore";
+import { MinusIcon } from "@heroicons/react/20/solid";
 import * as HeroIcons from '@heroicons/react/24/outline'
 import {
 	Bars3Icon,
@@ -124,6 +125,9 @@ function Sidebar() {
 
 	const items = useToolbarStore((state) => state.items);
 	const setValue = useToolbarStore((state) => state.setValue);
+	const setArrayValue = useToolbarStore((state) => state.setArrayValue);
+	const addArrayValue = useToolbarStore((state) => state.addArrayValue);
+	const removeArrayValue = useToolbarStore((state) => state.removeArrayValue);
 
 
 	/** TOOLBAR ITEM COMPONENT */
@@ -218,7 +222,7 @@ function Sidebar() {
 								<button
 									key={key}
 									className={`${value===option.value ? 'bg-neutral-500' : 'bg-transparent'} text-white rounded font-medium py-1.5`}
-									onClick={()=>setValue(prop, `${option.value}`)}
+									onClick={()=>setValue(prop, typeof option.value === 'boolean' ? option.value : `${option.value}`)}
 								>
 									{option.text}
 								</button>
@@ -262,6 +266,41 @@ function Sidebar() {
 										</button>
 									)
 								})}
+							</div>
+						);
+					case 'multiple-input':
+						return (
+							<div className="flex flex-col gap-3">
+								{value?.map((item: any, key: number) => {
+									return (
+										<div key={key} className="flex">
+											<input
+												type="text"
+												className="outline-none bg-eerie w-full px-3 py-2 rounded text-white font-medium"
+												value={`${item.value}`}
+												onChange={(e)=>setArrayValue(prop, e.target.value, key)}
+											/>
+											<AppButton
+												icon
+												size="xs"
+												color="eerie"
+												tone="dark"
+												variant="text"
+												onClick={()=>removeArrayValue(prop, key)}
+											>
+												<MinusIcon className="h-5 w-5" />
+											</AppButton>
+										</div>
+									)
+								})}
+								{value.length<5 && (
+									<button
+										className="bg-eerie hover:bg-eerie/90 w-full px-3 py-2 rounded text-white font-medium"
+										onClick={()=>addArrayValue(prop, '')}
+									>
+										Add
+									</button>
+								)}
 							</div>
 						);
 			default:
