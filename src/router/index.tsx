@@ -9,10 +9,10 @@ const routes: RouteObject[] = [
 		path: '/',
 		element: <App />,
 		children: [
-			// {
-			//   index: true,
-			//   element: lazyLoadRoute(() => import('')),
-			// },
+			{
+				index: true,
+				element: lazyLoadRoute(() => import('@/pages/general/LoginPage.tsx')),
+			},
 			{
 				path: '/login',
 				element: <LayoutDefault />,
@@ -28,7 +28,7 @@ const routes: RouteObject[] = [
 				element: <LayoutDashboard />,
 				children: [
 					{
-						index: true,
+						path: '/button',
 						element: lazyLoadRoute(() => import('@/pages/dashboard/ButtonPage.tsx')),
 					},
 					{

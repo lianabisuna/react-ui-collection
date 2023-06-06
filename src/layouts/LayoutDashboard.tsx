@@ -18,7 +18,7 @@ import {
 	ComputerDesktopIcon
 } from "@heroicons/react/24/outline";
 import { type SetStateAction, createContext, useContext, useState, type Dispatch } from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet, matchPath, useLocation } from "react-router-dom";
 
 // Dynamic Icon
 const DynamicHeroIcon = ({ icon, classList }: IconProps) => {
@@ -31,6 +31,91 @@ const DynamicHeroIcon = ({ icon, classList }: IconProps) => {
 
 // Provider
 const SidebarContext = createContext<SidebarContext|undefined>(undefined);
+
+// Router Links
+const menuItems = [
+	{
+		title: 'Actions',
+		icon: 'CursorArrowRaysIcon',
+		items: [
+			{ component: 'Button', to: '/button', disabled: false },
+			{ component: 'Button Group', to: '/', disabled: true },
+			{ component: 'Accordion', to: '/', disabled: true },
+			{ component: 'Pagination', to: '/', disabled: true },
+			{ component: 'Breadcrumb', to: '/', disabled: true },
+			{ component: 'Speed Dial', to: '/', disabled: true },
+		],
+	},
+	{
+		title: 'Text Inputs',
+		icon: 'LanguageIcon',
+		items: [
+			{ component: 'Input', to: '/', disabled: true },
+			{ component: 'Textarea', to: '/', disabled: true },
+			{ component: 'File', to: '/', disabled: true },
+			{ component: 'Dropzone', to: '/', disabled: true },
+			{ component: 'OTP', to: '/', disabled: true },
+			{ component: 'Rating', to: '/', disabled: true },
+		],
+	},
+	{
+		title: 'Communication',
+		icon: 'SignalIcon',
+		items: [
+			{ component: 'Badge', to: '/', disabled: true },
+			{ component: 'Progress Bar', to: '/', disabled: true },
+			{ component: 'Spinner', to: '/', disabled: true },
+			{ component: 'Toast', to: '/', disabled: true },
+			{ component: 'Alert', to: '/', disabled: true },
+			{ component: 'Notification', to: '/', disabled: true },
+			{ component: 'Stepper', to: '/', disabled: true },
+			{ component: 'Skeleton', to: '/', disabled: true },
+		],
+	},
+	{
+		title: 'Containment',
+		icon: 'Square2StackIcon',
+		items: [
+			{ component: 'Card', to: '/', disabled: true },
+			{ component: 'Tooltip', to: '/', disabled: true },
+			{ component: 'Popover', to: '/', disabled: true },
+			{ component: 'Modal', to: '/', disabled: true },
+			{ component: 'Sheet', to: '/', disabled: true },
+			{ component: 'List Group', to: '/', disabled: true },
+			{ component: 'Carousel', to: '/', disabled: true },
+			{ component: 'Table', to: '/', disabled: true },
+			{ component: 'Form', to: '/', disabled: true },
+		],
+	},
+	{
+		title: 'Navigation',
+		icon: 'MapPinIcon',
+		items: [
+			{ component: 'Tab', to: '/', disabled: true },
+			{ component: 'Search', to: '/', disabled: true },
+			{ component: 'Navigation Drawer', to: '/', disabled: true },
+			{ component: 'Floating Label', to: '/', disabled: true },
+			{ component: 'Avatar', to: '/', disabled: true },
+			{ component: 'Keyboard', to: '/', disabled: true },
+			{ component: 'Timeline', to: '/', disabled: true },
+		],
+	},
+	{
+		title: 'Selection',
+		icon: 'ListBulletIcon',
+		items: [
+			{ component: 'Checkbox', to: '/', disabled: true },
+			{ component: 'Chip', to: '/', disabled: true },
+			{ component: 'Date Picker', to: '/', disabled: true },
+			{ component: 'Time Picker', to: '/', disabled: true },
+			{ component: 'Radio Button', to: '/', disabled: true },
+			{ component: 'Dropdown', to: '/', disabled: true },
+			{ component: 'Range', to: '/', disabled: true },
+			{ component: 'Switch', to: '/', disabled: true },
+			{ component: 'Select', to: '/select', disabled: false },
+		],
+	},
+] as const;
 
 export default function LayoutDashboard() {
 	const [sidebar, setSidebar] = useState<boolean|null>(null);
@@ -68,6 +153,21 @@ function Header() {
 
   const menu = useNavStore((state: { menu: boolean }) => state.menu);
   const setMenu = useNavStore((state) => state.setMenu);
+	
+	const location = useLocation();
+
+	const routeComponentName = () => {
+		let routeComponentName = '';
+		menuItems.map((menuItem) => {
+			menuItem.items.findIndex((item) => {
+				if (matchPath(location.pathname, item.to)) {
+					routeComponentName = item.component;
+					return;
+				}
+			});
+		});
+		return routeComponentName;
+	}
 
 	return (
 		<header className="flex items-center h-14 w-full bg-[#111111]">
@@ -87,7 +187,7 @@ function Header() {
 							tone="dark"
 							onClick={()=>setMenu(!menu)}
 						>
-							<span>Button</span>
+							<span>{routeComponentName()}</span>
 							<ChevronDownIcon className="h-3 w-3 ml-3 path-stroke-2" />
 						</AppButton>
 					</li>
@@ -402,89 +502,7 @@ function Footer() {
 }
 
 function Menu() {
-	const menuItems = [
-		{
-			title: 'Actions',
-			icon: 'CursorArrowRaysIcon',
-			items: [
-				{ component: 'Button', to: '/', disabled: false },
-				{ component: 'Button Group', to: '/', disabled: true },
-				{ component: 'Accordion', to: '/', disabled: true },
-				{ component: 'Pagination', to: '/', disabled: true },
-				{ component: 'Breadcrumb', to: '/', disabled: true },
-				{ component: 'Speed Dial', to: '/', disabled: true },
-			],
-		},
-		{
-			title: 'Text Inputs',
-			icon: 'LanguageIcon',
-			items: [
-				{ component: 'Input', to: '/', disabled: true },
-				{ component: 'Textarea', to: '/', disabled: true },
-				{ component: 'File', to: '/', disabled: true },
-				{ component: 'Dropzone', to: '/', disabled: true },
-				{ component: 'OTP', to: '/', disabled: true },
-				{ component: 'Rating', to: '/', disabled: true },
-			],
-		},
-		{
-			title: 'Communication',
-			icon: 'SignalIcon',
-			items: [
-				{ component: 'Badge', to: '/', disabled: true },
-				{ component: 'Progress Bar', to: '/', disabled: true },
-				{ component: 'Spinner', to: '/', disabled: true },
-				{ component: 'Toast', to: '/', disabled: true },
-				{ component: 'Alert', to: '/', disabled: true },
-				{ component: 'Notification', to: '/', disabled: true },
-				{ component: 'Stepper', to: '/', disabled: true },
-				{ component: 'Skeleton', to: '/', disabled: true },
-			],
-		},
-		{
-			title: 'Containment',
-			icon: 'Square2StackIcon',
-			items: [
-				{ component: 'Card', to: '/', disabled: true },
-				{ component: 'Tooltip', to: '/', disabled: true },
-				{ component: 'Popover', to: '/', disabled: true },
-				{ component: 'Modal', to: '/', disabled: true },
-				{ component: 'Sheet', to: '/', disabled: true },
-				{ component: 'List Group', to: '/', disabled: true },
-				{ component: 'Carousel', to: '/', disabled: true },
-				{ component: 'Table', to: '/', disabled: true },
-				{ component: 'Form', to: '/', disabled: true },
-			],
-		},
-		{
-			title: 'Navigation',
-			icon: 'MapPinIcon',
-			items: [
-				{ component: 'Tab', to: '/', disabled: true },
-				{ component: 'Search', to: '/', disabled: true },
-				{ component: 'Navigation Drawer', to: '/', disabled: true },
-				{ component: 'Floating Label', to: '/', disabled: true },
-				{ component: 'Avatar', to: '/', disabled: true },
-				{ component: 'Keyboard', to: '/', disabled: true },
-				{ component: 'Timeline', to: '/', disabled: true },
-			],
-		},
-		{
-			title: 'Selection',
-			icon: 'ListBulletIcon',
-			items: [
-				{ component: 'Checkbox', to: '/', disabled: true },
-				{ component: 'Chip', to: '/', disabled: true },
-				{ component: 'Date Picker', to: '/', disabled: true },
-				{ component: 'Time Picker', to: '/', disabled: true },
-				{ component: 'Radio Button', to: '/', disabled: true },
-				{ component: 'Dropdown', to: '/', disabled: true },
-				{ component: 'Range', to: '/', disabled: true },
-				{ component: 'Switch', to: '/', disabled: true },
-				{ component: 'Select', to: '/', disabled: true },
-			],
-		},
-	] as const;
+	const location = useLocation();
 
 	return (
 	<div className="bg-[#111111] absolute top-14 left-0 w-full flex-1 h-[calc(100%-3.5rem)] border-t border-[#252525] py-5 z-50 overflow-y-auto overflow-x-hidden scrollbar">
@@ -495,18 +513,20 @@ function Menu() {
 						<DynamicHeroIcon icon={menuItem.icon} classList="h-5 w-5 text-white mr-1.5" />
 						<p className="text-white text-sm font-medium">{menuItem.title}</p>
 					</div>
-					<ul className="flex flex-col">
-						{menuItem.items.map((item) =>
-							<li className="mr-6">
-								<button className={`
-									py-2 rounded text-sm font-medium mx-3 px-3 w-full text-start
-									${item.component==='Button' ? 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 animate-glow text-white' : 'text-battle hover:text-white'} ${item.disabled ? 'line-through pointer-events-none' : ''}
-								`}>
-									{item.component}
-								</button>
-							</li>
+					<div className="flex flex-col">
+						{menuItem.items.map((item, key) =>
+							<Link
+								key={key}
+								to={item.to}
+								className={`
+									py-2 rounded text-sm font-medium mx-3 px-3 w-full text-start mr-6
+									${matchPath(location.pathname, item.to) ? 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 animate-glow text-white' : 'text-battle hover:text-white'} ${item.disabled ? 'line-through pointer-events-none' : ''}
+								`}
+							>
+								{item.component}
+							</Link>
 						)}
-					</ul>
+					</div>
 				</div>
 			)}
 		</div>

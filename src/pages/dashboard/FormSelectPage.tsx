@@ -26,6 +26,54 @@ export default function ButtonPage() {
 			value: false,
 		},
 		{
+			type: 'toggle',
+			prop: 'disabled',
+			title: 'Disabled',
+			value: false,
+		},
+		// {
+		// 	type: 'toggle',
+		// 	prop: 'float',
+		// 	title: 'Floating Label',
+		// 	value: false,
+		// },
+		{
+			type: 'select',
+			prop: 'variant',
+			title: 'Variant',
+			value: '',
+			options: [
+				{ text: 'Filled', value: 'filled' },
+				{ text: 'Outlined', value: 'outlined' },
+				{ text: 'Underlined', value: 'underlined' },
+			],
+		},
+		{
+			type: 'segment',
+			prop: 'size',
+			title: 'Size',
+			value: 'md',
+			options: [
+				{ text: 'XS', value: 'xs' },
+				{ text: 'S', value: 'sm' },
+				{ text: 'M', value: 'md' },
+				{ text: 'L', value: 'lg' },
+				{ text: 'XL', value: 'xl' },
+			],
+		},
+		{
+			type: 'input',
+			prop: 'label',
+			title: 'Label',
+			value: '',
+		},
+		{
+			type: 'input',
+			prop: 'message',
+			title: 'Helper Text',
+			value: '',
+		},
+		{
 			type: 'input',
 			prop: 'placeholder',
 			title: 'Placeholder',
@@ -33,7 +81,7 @@ export default function ButtonPage() {
 		},
 		{
 			type: 'input',
-			prop: 'emptyText',
+			prop: ('emptytext' as 'emptyText'),
 			title: 'Empty Text',
 			value: 'No data',
 		},
