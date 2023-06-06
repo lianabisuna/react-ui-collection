@@ -8,8 +8,9 @@ export default function LoginPage() {
 	return (
 		<div className="bg-dotted w-full h-full flex justify-center items-center">
 			<div className="h-full w-full max-h-[300px] max-w-[600px] flex flex-col justify-center items-start p-5 md:p-10 gap-8">
-					<div className="w-5/6 md:w-4/6 font-bold text-white text-2xl mx-auto">
-						<p>A library of user interface components created for the web.</p>
+					<div className="w-5/6 md:w-9/12 mx-auto">
+						<p className="font-bold text-white text-3xl">A sandbox of user interface components created for the web</p>
+						<p className="text-xs mt-3 font-medium text-battle">Take a tour of buttons, dropdowns, input fields, and everything visible on the web—made interactive.</p>
 					</div>
 					<div className="flex gap-5 opacity-80">
 						<img
