@@ -95,7 +95,7 @@ export default function AppFormSelect(props: Prop) {
 		// Container
 		<AppFormContainer
 			{...containerProps()}
-			onClick={() => setActive(!active)}
+			onClick={() => !props.disabled && setActive(!active)}
 		>
 			{/* Input */}
 			<div className="flex-grow flex items-center">
