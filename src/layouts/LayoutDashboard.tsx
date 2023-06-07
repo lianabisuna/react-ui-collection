@@ -520,7 +520,7 @@ function Menu() {
 								to={item.to}
 								className={`
 									py-2 rounded text-sm font-medium mx-3 px-3 w-full text-start mr-6
-									${matchPath(location.pathname, item.to) ? 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 animate-glow text-white' : 'text-battle hover:text-white'} ${item.disabled ? 'line-through pointer-events-none' : ''}
+									${matchPath(location.pathname, item.to) ? 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 animate-glow text-white' : 'text-battle hover:text-white'} ${item.disabled ? 'line-through pointer-events-none opacity-25' : ''}
 								`}
 							>
 								{item.component}
