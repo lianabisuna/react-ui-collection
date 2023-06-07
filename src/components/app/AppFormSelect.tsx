@@ -2,6 +2,7 @@ import { HtmlHTMLAttributes, useState } from "react";
 import { ClassBinding, InputVariant, OptionProp, TailwindColor } from "./types";
 import AppFormContainer from "./AppFormContainer";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import AppChip from "./AppChip";
 
 export default function AppFormSelect(props: Prop) {
 	/** CONTAINER PROPS */
@@ -120,28 +121,25 @@ export default function AppFormSelect(props: Prop) {
 							>
 								{(filteredModelValue() as string[]).map((item: any, key: any) => {
 									return (
-										<div key={key} className="rounded px-2 py-1 bg-blue-500 text-white w-full flex-grow">
+										<AppChip
+											key={key}
+											size={props.size}
+											color={props.color}
+										>
 											{item}
-										</div>
+										</AppChip>
 									)
 								})}
-								{/* <AppChip
-									v-for="(item,key) in filteredModelValue"
-									:key="key"
-									size="xs"
-								>
-									{{ item }}
-								</AppChip> */}
 							</div>
 						)}
 						{/* Single */}
 						{filteredModelValue() && !Array.isArray(filteredModelValue()) && (
-							<div className="rounded px-2 py-1 bg-blue-500 text-white w-full flex-grow">
+							<AppChip
+								size={props.size}
+								color={props.color}
+							>
 								{filteredModelValue()}
-							</div>
-							// <AppChip size="xs">
-							// 	{{ filteredModelValue }}
-							// </AppChip>
+							</AppChip>
 						)}
 					</div>
 				)}

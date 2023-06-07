@@ -70,6 +70,7 @@ export default function ButtonPage() {
 				{ text: 'Small', value: 'sm' },
 				{ text: 'Default', value: '' },
 				{ text: 'Large', value: 'lg' },
+				{ text: 'Full', value: 'full' },
 			],
 		},
 		{

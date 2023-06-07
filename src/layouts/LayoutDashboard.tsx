@@ -105,7 +105,7 @@ const menuItems = [
 		icon: 'ListBulletIcon',
 		items: [
 			{ component: 'Checkbox', to: '/', disabled: true },
-			{ component: 'Chip', to: '/', disabled: true },
+			{ component: 'Chip', to: '/chip', disabled: false },
 			{ component: 'Date Picker', to: '/', disabled: true },
 			{ component: 'Time Picker', to: '/', disabled: true },
 			{ component: 'Radio Button', to: '/', disabled: true },
