@@ -77,7 +77,7 @@ const menuItems = [
 		icon: 'Square2StackIcon',
 		items: [
 			{ component: 'Card', to: '/', disabled: true },
-			{ component: 'Tooltip', to: '/', disabled: true },
+			{ component: 'Tooltip', to: '/tooltip', disabled: false },
 			{ component: 'Popover', to: '/', disabled: true },
 			{ component: 'Modal', to: '/', disabled: true },
 			{ component: 'Sheet', to: '/', disabled: true },
@@ -513,7 +513,7 @@ function Menu() {
 						<DynamicHeroIcon icon={menuItem.icon} classList="h-5 w-5 text-white mr-1.5" />
 						<p className="text-white text-sm font-medium">{menuItem.title}</p>
 					</div>
-					<div className="flex flex-col">
+					<div className="flex flex-col pr-6">
 						{menuItem.items.map((item, key) =>
 							<Link
 								key={key}
