@@ -50,7 +50,7 @@ const menuItems = [
 		title: 'Text Inputs',
 		icon: 'LanguageIcon',
 		items: [
-			{ component: 'Input', to: '/', disabled: true },
+			{ component: 'Input', to: '/input', disabled: false },
 			{ component: 'Textarea', to: '/', disabled: true },
 			{ component: 'File', to: '/', disabled: true },
 			{ component: 'Dropzone', to: '/', disabled: true },

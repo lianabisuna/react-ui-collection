@@ -24,7 +24,7 @@ export default function TooltipPage() {
 			type: 'select',
 			prop: 'trigger',
 			title: 'Trigger',
-			value: 'Button',
+			value: 'text',
 			options: [
 				{ text: 'Button', value: 'button' },
 				{ text: 'Text', value: 'text' },
