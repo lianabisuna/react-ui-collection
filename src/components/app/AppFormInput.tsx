@@ -15,9 +15,9 @@ export default function AppFormInput(props: Prop) {
 	/** INPUT PROPS */
 
 	const inputProps = () => {
-		const { name, type, disabled, autofocus, readOnly, updateModelValue } = props;
+		const { name, type, disabled, autoFocus, readOnly, updateModelValue } = props;
 
-		return { name, type, disabled, autofocus, readOnly, updateModelValue };
+		return { name, type, disabled, autoFocus, readOnly, updateModelValue };
 	}
 
 
@@ -81,7 +81,7 @@ export type InputSize = 'xs'|'sm'|'md'|'lg'|'xl';
 
 export interface Prop extends HtmlHTMLAttributes<unknown> {
   modelValue?: string|number
-  autofocus?: boolean
+  autoFocus?: boolean
   readOnly?: boolean
   name?: string
   placeholder?: string

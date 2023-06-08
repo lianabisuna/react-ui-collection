@@ -44,6 +44,10 @@ const routes: RouteObject[] = [
 						element: lazyLoadRoute(() => import('@/pages/dashboard/FormSelectPage.tsx')),
 					},
 					{
+						path: '/tab',
+						element: lazyLoadRoute(() => import('@/pages/dashboard/TabPage.tsx')),
+					},
+					{
 						path: '/tooltip',
 						element: lazyLoadRoute(() => import('@/pages/dashboard/TooltipPage.tsx')),
 					},

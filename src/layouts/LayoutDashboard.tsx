@@ -91,7 +91,7 @@ const menuItems = [
 		title: 'Navigation',
 		icon: 'MapPinIcon',
 		items: [
-			{ component: 'Tab', to: '/', disabled: true },
+			{ component: 'Tab', to: '/tab', disabled: false },
 			{ component: 'Search', to: '/', disabled: true },
 			{ component: 'Navigation Drawer', to: '/', disabled: true },
 			{ component: 'Floating Label', to: '/', disabled: true },
