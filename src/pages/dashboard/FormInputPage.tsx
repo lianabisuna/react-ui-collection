@@ -9,10 +9,22 @@ export default function FormInputPage() {
 	const items = useToolbarStore(state => state.items as ToolbarItemsProp<keyof AppFormInputTypes.Prop>[]);
 
 	const initialItems: ToolbarItemsProp<keyof AppFormInputTypes.Prop>[] = [
+		// {
+		// 	type: 'toggle',
+		// 	prop: 'float',
+		// 	title: 'Floating Label',
+		// 	value: false,
+		// },
 		{
 			type: 'toggle',
-			prop: ('readonly' as 'readOnly'),
+			prop: 'readOnly',
 			title: 'Read Only',
+			value: false,
+		},
+		{
+			type: 'toggle',
+			prop: 'disabled',
+			title: 'Disabled',
 			value: false,
 		},
 		{
@@ -34,6 +46,19 @@ export default function FormInputPage() {
 			value: '',
 		},
 		{
+			type: 'segment',
+			prop: 'size',
+			title: 'Size',
+			value: 'md',
+			options: [
+				{ text: 'XS', value: 'xs' },
+				{ text: 'S', value: 'sm' },
+				{ text: 'M', value: 'md' },
+				{ text: 'L', value: 'lg' },
+				{ text: 'XL', value: 'xl' },
+			],
+		},
+		{
 			type: 'select',
 			prop: 'type',
 			title: 'Type',
@@ -41,25 +66,12 @@ export default function FormInputPage() {
 			options: [
 				{ text: 'Text', value: 'text' },
 				{ text: 'Number', value: 'number' },
-				{ text: 'Email', value: 'email' },
-				{ text: 'Search', value: 'search' },
-				{ text: 'Number', value: 'number' },
 				{ text: 'Password', value: 'password' },
-				{ text: 'Telephone', value: 'tel' },
-				{ text: 'URL', value: 'url' },
+				{ text: 'Search', value: 'search' },
+				// { text: 'Email', value: 'email' },
+				// { text: 'Telephone', value: 'tel' },
+				// { text: 'URL', value: 'url' },
 			],
-		},
-		{
-			type: 'color',
-			prop: 'color',
-			title: 'Color',
-			value: 'blue-500',
-		},
-		{
-			type: 'toggle',
-			prop: 'disabled',
-			title: 'Disabled',
-			value: false,
 		},
 		{
 			type: 'select',
@@ -73,6 +85,12 @@ export default function FormInputPage() {
 			],
 		},
 		{
+			type: 'color',
+			prop: 'color',
+			title: 'Color',
+			value: 'blue-500',
+		},
+		{
 			type: 'input',
 			prop: 'prepend',
 			title: 'Prepend',
@@ -83,19 +101,6 @@ export default function FormInputPage() {
 			prop: 'append',
 			title: 'Append',
 			value: '',
-		},
-		{
-			type: 'segment',
-			prop: 'size',
-			title: 'Size',
-			value: 'md',
-			options: [
-				{ text: 'XS', value: 'xs' },
-				{ text: 'S', value: 'sm' },
-				{ text: 'M', value: 'md' },
-				{ text: 'L', value: 'lg' },
-				{ text: 'XL', value: 'xl' },
-			],
 		},
 	];
 	

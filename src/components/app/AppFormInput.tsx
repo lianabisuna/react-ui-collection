@@ -68,8 +68,6 @@ export default function AppFormInput(props: Prop) {
 					${props.float ? 'placeholder-gray-400 placeholder-opacity-0' : ''}
 					${props.block ? 'w-full' : ''}
 				`}
-				
-				// v-bind="$attrs"
 			/>
 			{/* Append */}
 			{props.append}
