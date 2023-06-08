@@ -4,6 +4,8 @@ export { default as AppFormSelect } from './AppFormSelect';
 export type * as AppFormSelectTypes from './AppFormSelect';
 export { default as AppFormInput } from './AppFormInput';
 export type * as AppFormInputTypes from './AppFormInput';
+export { default as AppFormTextarea } from './AppFormTextarea';
+export type * as AppFormTextareaTypes from './AppFormTextarea';
 export { default as AppChip } from './AppChip';
 export type * as AppChipTypes from './AppChip';
 export { default as AppPagination } from './AppPagination';

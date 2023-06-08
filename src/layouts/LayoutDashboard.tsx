@@ -51,7 +51,7 @@ const menuItems = [
 		icon: 'LanguageIcon',
 		items: [
 			{ component: 'Input', to: '/input', disabled: false },
-			{ component: 'Textarea', to: '/', disabled: true },
+			{ component: 'Textarea', to: '/textarea', disabled: false },
 			{ component: 'File', to: '/', disabled: true },
 			{ component: 'Dropzone', to: '/', disabled: true },
 			{ component: 'OTP', to: '/', disabled: true },
