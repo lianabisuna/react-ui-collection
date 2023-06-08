@@ -83,6 +83,7 @@ export interface ToolbarItemsProp<P extends string=''> {
 	title: string
 	value: any // string|boolean
 	options?: OptionProp[]|string[]
+	componentProps?: any
 }
 
 // input

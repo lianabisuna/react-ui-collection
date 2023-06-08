@@ -6,6 +6,8 @@ export { default as AppFormInput } from './AppFormInput';
 export type * as AppFormInputTypes from './AppFormInput';
 export { default as AppChip } from './AppChip';
 export type * as AppChipTypes from './AppChip';
+export { default as AppPagination } from './AppPagination';
+export type * as AppPaginationTypes from './AppPagination';
 export { default as AppTab } from './AppTab';
 export type * as AppTabTypes from './AppTab';
 export { default as AppTooltip } from './AppTooltip';

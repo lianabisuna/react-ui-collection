@@ -91,7 +91,7 @@ export default function ButtonPage() {
 		setItems(initialItems);
 	}, []);
 
-	const buttonProps = (): AppButtonTypes.Prop => {
+	const componentProps = (): AppButtonTypes.Prop => {
 		const props: AppButtonTypes.Prop = {};
 		items.map((item) => {
 			props[item.prop] = item.value;
@@ -103,7 +103,7 @@ export default function ButtonPage() {
 		<div>
 			<AppButton
 				color="purple-500"
-				{...buttonProps()}
+				{...componentProps()}
 			>
 			</AppButton>
 		</div>

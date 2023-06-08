@@ -41,7 +41,7 @@ const menuItems = [
 			{ component: 'Button', to: '/button', disabled: false },
 			{ component: 'Button Group', to: '/', disabled: true },
 			{ component: 'Accordion', to: '/', disabled: true },
-			{ component: 'Pagination', to: '/', disabled: true },
+			{ component: 'Pagination', to: '/pagination', disabled: false },
 			{ component: 'Breadcrumb', to: '/', disabled: true },
 			{ component: 'Speed Dial', to: '/', disabled: true },
 		],
@@ -233,7 +233,7 @@ function Sidebar() {
 	/** TOOLBAR ITEM COMPONENT */
 
 	function ToolbarItem<P extends string=''>(params: ToolbarItemsProp<P>) {
-		const { type, prop, value } = params;
+		const { type, prop, value, componentProps } = params;
 		const filteredOptions = () => {
 			const _options = 'options' in params ? [ ...params.options as OptionProp[] ] : [];
 			return _options?.map((option: OptionProp) => {
@@ -285,6 +285,7 @@ function Sidebar() {
 						className="outline-none bg-eerie w-full px-3 py-2 rounded text-white font-medium"
 						value={`${value}`}
 						onChange={(e)=>setValue(prop, e.target.value)}
+						{...componentProps}
 					/>
 				);
 			case 'select':
