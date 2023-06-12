@@ -111,7 +111,7 @@ const menuItems = [
 			{ component: 'Radio Button', to: '/radio', disabled: true },
 			{ component: 'Dropdown', to: '/', disabled: true },
 			{ component: 'Range', to: '/', disabled: true },
-			{ component: 'Switch', to: '/switch', disabled: true },
+			{ component: 'Switch', to: '/switch', disabled: false },
 			{ component: 'Select', to: '/select', disabled: false },
 		],
 	},
