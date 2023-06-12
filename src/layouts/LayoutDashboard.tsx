@@ -108,7 +108,7 @@ const menuItems = [
 			{ component: 'Chip', to: '/chip', disabled: false },
 			{ component: 'Date Picker', to: '/', disabled: true },
 			// { component: 'Time Picker', to: '/', disabled: true },
-			{ component: 'Radio Button', to: '/radio', disabled: true },
+			{ component: 'Radio', to: '/radio', disabled: false },
 			{ component: 'Dropdown', to: '/', disabled: true },
 			{ component: 'Range', to: '/', disabled: true },
 			{ component: 'Switch', to: '/switch', disabled: false },

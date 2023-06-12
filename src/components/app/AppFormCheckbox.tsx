@@ -49,7 +49,7 @@ export default function AppFormCheckbox(props: Prop) {
 }
 
 // Types
-export type CheckboxSize = 'xs'|'sm'|'lg'|'xl'
+export type CheckboxSize = 'xs'|'sm'|'lg'|'xl';
 
 export type Prop = {
   children?: ReactNode;
