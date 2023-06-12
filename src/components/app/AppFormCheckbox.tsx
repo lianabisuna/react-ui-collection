@@ -1,17 +1,17 @@
-export default function AppFormCheckbox(props: Prop) {
+// export default function AppFormCheckbox(props: Prop) {
 
-  /** CLASSES */
+//   /** CLASSES */
 
-  const classList = [
-  ].join(' ');
+//   const classList = [
+//   ].join(' ');
 
-  return (
-    <div></div>
-  );
-}
+//   return (
+//     <div></div>
+//   );
+// }
 
-// Types
-export type ComponentSize = 'xs'|'sm'|'md'|'lg'|'xl';
+// // Types
+// export type ComponentSize = 'xs'|'sm'|'md'|'lg'|'xl';
 
-export type Prop = {
-}
+// export type Prop = {
+// }
