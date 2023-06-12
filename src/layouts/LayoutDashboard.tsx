@@ -104,7 +104,7 @@ const menuItems = [
 		title: 'Selection',
 		icon: 'ListBulletIcon',
 		items: [
-			{ component: 'Checkbox', to: '/checkbox', disabled: true },
+			{ component: 'Checkbox', to: '/checkbox', disabled: false },
 			{ component: 'Chip', to: '/chip', disabled: false },
 			{ component: 'Date Picker', to: '/', disabled: true },
 			// { component: 'Time Picker', to: '/', disabled: true },

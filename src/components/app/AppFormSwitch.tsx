@@ -15,7 +15,7 @@ export default function AppFormSwitch(props: Prop) {
       {/* Switch */}
       <div className="relative">
         {/* Hidden */}
-        <input  
+        <input
           type="checkbox"
           checked={props.modelValue}
           onChange={updateModelValue}
