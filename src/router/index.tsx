@@ -59,6 +59,34 @@ const routes: RouteObject[] = [
 						path: '/tooltip',
 						element: lazyLoadRoute(() => import('@/pages/dashboard/TooltipPage.tsx')),
 					},
+					{
+						path: '/checkbox',
+						element: lazyLoadRoute(() => import('@/pages/dashboard/FormCheckboxPage.tsx')),
+					},
+					{
+						path: '/file',
+						element: lazyLoadRoute(() => import('@/pages/dashboard/FormFilePage.tsx')),
+					},
+					{
+						path: '/radio',
+						element: lazyLoadRoute(() => import('@/pages/dashboard/FormRadioPage.tsx')),
+					},
+					{
+						path: '/switch',
+						element: lazyLoadRoute(() => import('@/pages/dashboard/FormSwitchPage.tsx')),
+					},
+					{
+						path: '/modal',
+						element: lazyLoadRoute(() => import('@/pages/dashboard/ModalPage.tsx')),
+					},
+					{
+						path: '/otp',
+						element: lazyLoadRoute(() => import('@/pages/dashboard/OtpPage.tsx')),
+					},
+					{
+						path: '/table',
+						element: lazyLoadRoute(() => import('@/pages/dashboard/TablePage.tsx')),
+					},
 				],
 			},
 			{

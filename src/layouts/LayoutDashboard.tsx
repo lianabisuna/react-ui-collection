@@ -43,7 +43,7 @@ const menuItems = [
 			{ component: 'Accordion', to: '/', disabled: true },
 			{ component: 'Pagination', to: '/pagination', disabled: false },
 			{ component: 'Breadcrumb', to: '/', disabled: true },
-			{ component: 'Speed Dial', to: '/', disabled: true },
+			// { component: 'Speed Dial', to: '/', disabled: true },
 		],
 	},
 	{
@@ -52,9 +52,9 @@ const menuItems = [
 		items: [
 			{ component: 'Input', to: '/input', disabled: false },
 			{ component: 'Textarea', to: '/textarea', disabled: false },
-			{ component: 'File', to: '/', disabled: true },
+			{ component: 'File', to: '/file', disabled: true },
 			{ component: 'Dropzone', to: '/', disabled: true },
-			{ component: 'OTP', to: '/', disabled: true },
+			{ component: 'OTP', to: '/otp', disabled: true },
 			{ component: 'Rating', to: '/', disabled: true },
 		],
 	},
@@ -79,11 +79,11 @@ const menuItems = [
 			{ component: 'Card', to: '/', disabled: true },
 			{ component: 'Tooltip', to: '/tooltip', disabled: false },
 			{ component: 'Popover', to: '/', disabled: true },
-			{ component: 'Modal', to: '/', disabled: true },
-			{ component: 'Sheet', to: '/', disabled: true },
+			{ component: 'Modal', to: '/modal', disabled: false },
+			// { component: 'Sheet', to: '/', disabled: true },
 			{ component: 'List Group', to: '/', disabled: true },
-			{ component: 'Carousel', to: '/', disabled: true },
-			{ component: 'Table', to: '/', disabled: true },
+			// { component: 'Carousel', to: '/', disabled: true },
+			{ component: 'Table', to: '/table', disabled: true },
 			{ component: 'Form', to: '/', disabled: true },
 		],
 	},
@@ -92,9 +92,9 @@ const menuItems = [
 		icon: 'MapPinIcon',
 		items: [
 			{ component: 'Tab', to: '/tab', disabled: false },
-			{ component: 'Search', to: '/', disabled: true },
-			{ component: 'Navigation Drawer', to: '/', disabled: true },
-			{ component: 'Floating Label', to: '/', disabled: true },
+			// { component: 'Search', to: '/', disabled: true },
+			// { component: 'Navigation Drawer', to: '/', disabled: true },
+			// { component: 'Floating Label', to: '/', disabled: true },
 			{ component: 'Avatar', to: '/', disabled: true },
 			{ component: 'Keyboard', to: '/', disabled: true },
 			{ component: 'Timeline', to: '/', disabled: true },
@@ -104,14 +104,14 @@ const menuItems = [
 		title: 'Selection',
 		icon: 'ListBulletIcon',
 		items: [
-			{ component: 'Checkbox', to: '/', disabled: true },
+			{ component: 'Checkbox', to: '/checkbox', disabled: true },
 			{ component: 'Chip', to: '/chip', disabled: false },
 			{ component: 'Date Picker', to: '/', disabled: true },
-			{ component: 'Time Picker', to: '/', disabled: true },
-			{ component: 'Radio Button', to: '/', disabled: true },
+			// { component: 'Time Picker', to: '/', disabled: true },
+			{ component: 'Radio Button', to: '/radio', disabled: true },
 			{ component: 'Dropdown', to: '/', disabled: true },
 			{ component: 'Range', to: '/', disabled: true },
-			{ component: 'Switch', to: '/', disabled: true },
+			{ component: 'Switch', to: '/switch', disabled: true },
 			{ component: 'Select', to: '/select', disabled: false },
 		],
 	},
@@ -282,6 +282,15 @@ function Sidebar() {
 				return (
 					<input
 						type="text"
+						className="outline-none bg-eerie w-full px-3 py-2 rounded text-white font-medium"
+						value={`${value}`}
+						onChange={(e)=>setValue(prop, e.target.value)}
+						{...componentProps}
+					/>
+				);
+			case 'textarea':
+				return (
+					<textarea
 						className="outline-none bg-eerie w-full px-3 py-2 rounded text-white font-medium"
 						value={`${value}`}
 						onChange={(e)=>setValue(prop, e.target.value)}
