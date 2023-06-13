@@ -87,6 +87,10 @@ const routes: RouteObject[] = [
 						path: '/table',
 						element: lazyLoadRoute(() => import('@/pages/dashboard/TablePage.tsx')),
 					},
+					{
+						path: '/dropzone',
+						element: lazyLoadRoute(() => import('@/pages/dashboard/FormDropzonePage.tsx')),
+					},
 				],
 			},
 			{
