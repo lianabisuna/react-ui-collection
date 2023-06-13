@@ -118,7 +118,7 @@ const menuItems = [
 ] as const;
 
 export default function LayoutDashboard() {
-	const [sidebar, setSidebar] = useState<boolean|null>(null);
+	const [sidebar, setSidebar] = useState<boolean|null>(true);
   const menu = useNavStore((state) => state.menu);
 
 	return (
